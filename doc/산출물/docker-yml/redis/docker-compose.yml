@@ -1,0 +1,26 @@
+# docker-compose.yml
+version: '3.9'
+
+services:
+  # 서비스명
+  redis:
+    # 사용할 이미지
+    image: "redis:latest"
+    container_name: redis
+    # 컨테이너 실행 시 재시작
+    restart: always
+    # 접근 포트 설정(컨테이너 외부:컨테이너 내부)
+    ports:
+      - '6379:6379'
+    expose:
+      - '6379'
+    labels:
+      - "name=redis"
+      - "mode=standalone"
+    # 볼륨 설정
+    volumes:
+      - './data:/data'
+      - './conf/redis.conf:/usr/local/conf/redis.conf'
+      
+    # 명령어 설정
+    command: redis-server /usr/local/conf/redis.conf
