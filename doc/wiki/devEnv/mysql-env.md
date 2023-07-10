@@ -10,15 +10,15 @@ MySQL 컨테이너 디렉토리 구조
 
 - docker-compose.yml
 
-  mysql image를 이용하여 hstt container를 생성합니다.
+  mysql image를 이용하여 PB container를 생성합니다.
 
-- hstt
+- PB
 
-  hstt DB container와 관련된 데이터 저장소
+  PB DB container와 관련된 데이터 저장소
 
-    - db : hstt DB의 데이터 저장소
-    - mysql-config-files/my.cnf : hstt DB container를 만들때의 설정 파일
-    - mysql-init-files/create.sql : hstt DB container를 만들때 DB 생성, 권한 설정등을 하는 파일
+    - db : PB DB의 데이터 저장소
+    - mysql-config-files/my.cnf : PB DB container를 만들때의 설정 파일
+    - mysql-init-files/create.sql : PB DB container를 만들때 DB 생성, 권한 설정등을 하는 파일
 
 
 - [docker-compose.yml](../../산출물/docker-yml/mysql/docker-compose.yml)
@@ -52,7 +52,7 @@ services:
     volumes:
       # {연결될 실제 물리 folder path}:{docker 안의 folder path}
       - './db:/var/lib/mysql'
-      # hstt db 초기화
+      # PB db 초기화
       - './mysql-init-files:/docker-entrypoint-initdb.d/'
       # mysql configuration 정보
       - './mysql-config-files:/etc/mysql/conf.d'

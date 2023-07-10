@@ -26,7 +26,7 @@ services:
     volumes:
       # {연결될 실제 물리 folder path}:{docker 안의 folder path}
       - './db:/var/lib/mysql'
-      # hstt db 초기화
+      # db 초기화
       - './mysql-init-files:/docker-entrypoint-initdb.d/'
       # mysql configuration 정보
       - './mysql-config-files:/etc/mysql/conf.d'
