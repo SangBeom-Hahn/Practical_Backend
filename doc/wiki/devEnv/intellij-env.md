@@ -8,9 +8,9 @@
 >| <img title="" src="../images/devEnv/Intellij-project-structure.png" alt="" data-align="inline"> |
 >|:-----------------------------------------------------------------------------------------------:|
 >|                        < 그림 1.1.1.-1 : Project Settings - SDK version >                         |
->- SDK : 1.8
+>- SDK : 17
 >
->- Language level : 8 - Lambdas, type annotations etc.
+>- Language level : 17 - Sealed types, always-strict floating-point semantics
 
 
 - `Menu > File > Settings`에서 Gradle환경을 설정한다.
@@ -22,7 +22,7 @@
 >|                                  < 그림 1.1.1-2 : Gradle 설정 >                                   |
 >- Gradle user home : gradle home 디렉토리를 설정한다.
 >
->- Gradle JVM : 설치한 java를 선택한다.
+>- Gradle JVM : 설치한 java를 선택한다(Ver 17).
 
 
 
@@ -31,7 +31,7 @@
 >| <img title="" src="../images/devEnv/intellij-settings-java.png" alt="" data-align="inline"> |
 >|:-------------------------------------------------------------------------------------------:|
 >|                              < 그림 1.1.1-3 : Java Compiler 설정 >                              |
->- Project bytecode version : 1.8
+>- Project bytecode version : 17(설치한 Java Version)
 
 
 - java vm 한글 설정을 위해 아래의 파일(*.vmoptions)을 수정한다.
