@@ -71,7 +71,8 @@ services 내에 서비스 이름으로 mysql를 지정한다.
 
   이 옵션은 container 외부와 내부의 포트맵핑을 수동으로 설정할 수 있도록 해줍니다. 
 
-MySQL 컨테이너 디렉토리(docker-compose.yml)에서 `docker-compose up -d` 명령으로 container를 실행 시킨다.
+
+MySQL 컨테이너 디렉토리(/doc/산출물/docker-yml/mysql)에서 `docker-compose up -d` 명령으로 container를 실행 시킨다.
 
 
 #### 1.2.2.2. MySQL 접속
