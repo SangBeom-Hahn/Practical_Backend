@@ -1,0 +1,32 @@
+# docker-compose.yml
+version: '3.9'
+
+services:
+  # 서비스명
+  mysql:
+    # 사용할 이미지
+    image: "mysql:8.0.33"
+    container_name: mysql
+    # 컨테이너 실행 시 재시작
+    restart: always
+    # 환경 변수 설정
+    environment:
+      MYSQL_ROOT_PASSWORD: 1111
+      TZ: 'Asia/Seoul'
+      # 접근 포트 설정(컨테이너 외부:컨테이너 내부)
+    ports:
+      - '3316:3306'
+    expose:
+      - '3316'
+      # 명령어 설정
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    # 볼륨 설정
+    volumes:
+      # {연결될 실제 물리 folder path}:{docker 안의 folder path}
+      - './db:/var/lib/mysql'
+      # db 초기화
+      - './mysql-init-files:/docker-entrypoint-initdb.d/'
+      # mysql configuration 정보
+      - './mysql-config-files:/etc/mysql/conf.d'
