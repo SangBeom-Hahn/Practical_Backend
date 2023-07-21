@@ -1,6 +1,9 @@
 package com.study.practical_backend.service;
 
+import com.study.practical_backend.domain.Guestbook;
 import com.study.practical_backend.dto.GuestbookDTO;
+import com.study.practical_backend.dto.PageRequestDTO;
+import com.study.practical_backend.dto.PageResultDTO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,5 +22,20 @@ class GuestbookServiceImplTest {
       .writer("user0")
       .build();
     guestbookService.register(guestbookDTO);
+  }
+  
+  @Test
+  void GuestbookServiceImplTest() {
+    // given
+    PageRequestDTO pageRequestDTO = PageRequestDTO.builder().page(1).size(10).build();
+  
+    // when
+    PageResultDTO<GuestbookDTO, Guestbook> resultDTO = guestbookService.getList(pageRequestDTO);
+  
+    // then
+    for (GuestbookDTO guestbookDTO : resultDTO.getDtoList()) {
+      System.out.println(guestbookDTO);
+    }
+  
   }
 }
