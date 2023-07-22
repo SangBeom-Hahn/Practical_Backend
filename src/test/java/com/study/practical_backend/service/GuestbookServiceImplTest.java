@@ -27,7 +27,10 @@ class GuestbookServiceImplTest {
   @Test
   void GuestbookServiceImplTest() {
     // given
-    PageRequestDTO pageRequestDTO = PageRequestDTO.builder().page(1).size(10).build();
+    PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
+      .page(1)
+      .size(10)
+      .build();
   
     // when
     PageResultDTO<GuestbookDTO, Guestbook> resultDTO = guestbookService.getList(pageRequestDTO);
@@ -36,6 +39,28 @@ class GuestbookServiceImplTest {
     for (GuestbookDTO guestbookDTO : resultDTO.getDtoList()) {
       System.out.println(guestbookDTO);
     }
-  
+  }
+
+  @Test
+  public void testList(){
+
+    PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
+      .page(1)
+      .size(10)
+      .build();
+
+    PageResultDTO<GuestbookDTO, Guestbook> resultDTO = guestbookService.getList(pageRequestDTO);
+
+    System.out.println("PREV: "+resultDTO.isPrev());
+    System.out.println("NEXT: "+resultDTO.isNext());
+    System.out.println("TOTAL: " + resultDTO.getTotalPage());
+
+    System.out.println("-------------------------------------");
+    for (GuestbookDTO guestbookDTO : resultDTO.getDtoList()) {
+      System.out.println(guestbookDTO);
+    }
+
+    System.out.println("========================================");
+    resultDTO.getPageList().forEach(i -> System.out.println(i));
   }
 }
