@@ -1,0 +1,39 @@
+server:
+  error:
+    include-exception: true
+    include-stacktrace: always
+  port: 80
+  servlet:
+    context-path: /
+    session:
+      timeout: 10m
+
+# Spring boot configurations.
+spring:
+  # JPA properties
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none # When you launch the application for the first time - switch "none" at "create"
+    properties:
+      hibernate:
+        format_sql: true
+
+  # mysql properties
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3356/pb?autoReconnect=true&serverTimezone=Asia/Seoul
+    username: pb
+    password: 1111
+
+  # thymeleaf properties
+  thymeleaf:
+    cache: false
+
+
+logging:
+  level:
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.springframework.transaction.interceptor: TRACE
+    org.springframework.orm.jpa.JpaTransactionManager: DEBUG
+    org.hibernate.resource.transaction: DEBUG
