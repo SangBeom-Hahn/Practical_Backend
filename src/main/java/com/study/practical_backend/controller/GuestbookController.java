@@ -1,5 +1,6 @@
 package com.study.practical_backend.controller;
 
+import com.study.practical_backend.dto.GuestbookDTO;
 import com.study.practical_backend.dto.PageRequestDTO;
 import com.study.practical_backend.service.GuestbookService;
 import lombok.RequiredArgsConstructor;
@@ -8,7 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @Slf4j
@@ -26,5 +29,18 @@ public class GuestbookController {
   public String list(@ModelAttribute PageRequestDTO pageRequestDTO, Model model) {
     model.addAttribute("result", guestbookService.getList(pageRequestDTO));
     return "/guestbook/list";
+  }
+
+  @GetMapping("/register")
+  public String registerFrom() {
+    return "/guestbook/register";
+  }
+
+  @PostMapping("/register")
+  public String register(GuestbookDTO guestbookDTO, RedirectAttributes redirectAttributes) {
+//    System.out.println(guestbookDTO.getGno());
+    Long gno = guestbookService.register(guestbookDTO);
+    redirectAttributes.addFlashAttribute("msg", gno);
+    return "redirect:/guestbook/list";
   }
 }
