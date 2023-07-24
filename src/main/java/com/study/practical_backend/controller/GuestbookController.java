@@ -20,15 +20,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class GuestbookController {
   private final GuestbookService guestbookService;
 
-  @GetMapping({"/"})
+  @GetMapping("/")
   public String guestbooks() {
     return "redirect:/guestbook/list";
   }
 
   @GetMapping("/list")
-  public String list(@ModelAttribute PageRequestDTO pageRequestDTO, Model model) {
+  public void list(@ModelAttribute PageRequestDTO pageRequestDTO, Model model) {
     model.addAttribute("result", guestbookService.getList(pageRequestDTO));
-    return "/guestbook/list";
   }
 
   @GetMapping("/register")
@@ -38,9 +37,30 @@ public class GuestbookController {
 
   @PostMapping("/register")
   public String register(GuestbookDTO guestbookDTO, RedirectAttributes redirectAttributes) {
-//    System.out.println(guestbookDTO.getGno());
     Long gno = guestbookService.register(guestbookDTO);
     redirectAttributes.addFlashAttribute("msg", gno);
+    return "redirect:/guestbook/list";
+  }
+
+  @GetMapping({"/read", "/modify"})
+  public void read(long gno, Model model, @ModelAttribute("requestDTO") PageRequestDTO requestDTO) {
+    GuestbookDTO dto = guestbookService.read(gno);
+    model.addAttribute("dto", dto);
+  }
+
+  @PostMapping("/modify")
+  public String modify(GuestbookDTO dto, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, RedirectAttributes redirectAttributes) {
+    guestbookService.modify(dto);
+    redirectAttributes.addAttribute("page", requestDTO.getPage());
+    redirectAttributes.addAttribute("gno", dto.getGno());
+
+    return "redirect:/guestbook/read";
+  }
+
+  @PostMapping("/remove")
+  public String remove(long gno, RedirectAttributes redirectAttributes) {
+    guestbookService.remove(gno);
+    redirectAttributes.addFlashAttribute("gno", gno);
     return "redirect:/guestbook/list";
   }
 }
