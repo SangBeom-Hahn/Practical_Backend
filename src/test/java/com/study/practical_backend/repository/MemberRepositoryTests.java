@@ -1,6 +1,11 @@
 package com.study.practical_backend.repository;
 
-import static org.junit.jupiter.api.Assertions.*;
+import com.study.practical_backend.domain.Member;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.stream.IntStream;
 
 @SpringBootTest
 public class MemberRepositoryTests {
