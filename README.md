@@ -25,5 +25,5 @@
 
 # [1. 개발환경 및 설정](./doc/wiki/devEnv/dev-env.md)
 
-# 2. PB 프로젝트 구조 및 package
+# [2. PB 프로젝트 구조 및 package](./doc/wiki/architect/pb-project-package-folder-structure-convention.md)
 
