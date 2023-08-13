@@ -22,13 +22,4 @@ public class GuestbookDTO {
   
   public GuestbookDTO(Long gno, String title, String content, String writer) {
   }
-  
-  public static GuestbookDTO of(Guestbook guestbook) {
-    return new GuestbookDTO(
-      guestbook.getGno(), 
-      guestbook.getTitle(),
-      guestbook.getContent(),
-      guestbook.getWriter()
-    );
-  }
 }
